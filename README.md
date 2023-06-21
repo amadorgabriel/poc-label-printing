@@ -36,7 +36,7 @@ Porém os arquivos gerados tem perdido qualidade, formatação no momento da con
 5. O sistema deve permitir o download do conteúdo em SVG
 
 
-<img src="./assets/img/draft.jpeg" alt="Rascunho no caderno" width="600px"/>
+<img src="./src/assets/img/draft.jpeg" alt="Rascunho no caderno" width="600px"/>
 
 
 # Propostas Avaliadas
