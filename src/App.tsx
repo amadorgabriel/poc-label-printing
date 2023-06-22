@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+  Container,
+  HStack,
+  Box,
+  Text,
+  Heading,
+  Input,
+  InputGroup,
+  Button,
+} from "@chakra-ui/react";
+
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Container height="max">
+      <Box>
+        <Heading>Label Printing</Heading>
+        <Text mt="2" fontSize={"md"}>
+          Gere etiquetas para impressão sem perder qualidade de imagem.
+        </Text>
+      </Box>
+
+      <Box width="100%" mt={8}>
+        <Input placeholder="Texto para sua etiqueta" />
+
+        <InputGroup mt={3}>
+          <input type="file" style={{ display: "none" }}></input>
+
+          <Input size={"md"} placeholder="Upload do SVG" />
+        </InputGroup>
+      </Box>
+
+      <Box w="100%" mt={8}>
+        <Box bg="gray" height='300px' w="100%" p={4} color="white">
+          Box Previwer
+        </Box>
+
+        <HStack mt={6} direction="row" spacing={3}>
+          <Button colorScheme="blue" variant="solid">
+            Gerar PDF
+          </Button>
+          <Button colorScheme="blue" variant="solid">
+            Gerar SVG
+          </Button>
+        </HStack>
+      </Box>
+    </Container>
+  );
 }
 
-export default App
+export default App;
