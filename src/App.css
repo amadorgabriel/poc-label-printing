@@ -4,3 +4,35 @@
   padding: 2rem;
   text-align: center;
 }
+
+.box-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "text img";
+
+  border-radius: 5px;
+  border: 3px dotted gray;
+  background-color: whitesmoke;
+}
+
+.text-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: "text";
+
+  color: black;
+  font-size: 2rem;
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: "text";
+}
+
+.image-content {
+  width: 150px;
+  height: 150px;
+}
