@@ -7,7 +7,7 @@
 
 .box-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-areas: "text img";
 
   border-radius: 5px;
@@ -20,6 +20,7 @@
   align-items: center;
   justify-content: center;
   grid-area: "text";
+  padding: 0 1rem;
 
   color: black;
   font-size: 2rem;
@@ -35,4 +36,9 @@
 .image-content {
   width: 150px;
   height: 150px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
 }
