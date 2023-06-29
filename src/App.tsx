@@ -8,8 +8,6 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import Pdf from "react-to-pdf";
-// import { LabelPDFTemplate } from "./components/LabelPDFTemplate";
 
 import "./App.css";
 
@@ -17,36 +15,10 @@ function App() {
   const [value, setValue] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
-  // const iframeRef = useRef<HTMLIFrameElement>(null);
-  // const printRef = useRef<HTMLDivElement>(null);
-
   const ref = useRef<HTMLDivElement>(null);
 
   const handleGeneratePdf = () => {
-    const content = ref?.current;
-    let win = window.open("", "", `height=200,width=300`);
-
-    var style = "<style>";
-    style = style + "table {width: 100%;font: 20px Calibri;}";
-    style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
-    style = style + "padding: 2px 3px;text-align: center;}";
-    style = style + "</style>";
-
-    if (content && win) {
-      win.document.write("<html download='file.pdf' ><head>");
-      win.document.write("<title>Empregados</title>");
-      console.log(style);
-      win.document.write(style);
-      win.document.write("</head>");
-      win.document.write("<body>");
-      win.document.write(content.innerHTML);
-      win.document.write("</body></html>");
-      win.document.close();
-
-      win.document.dispatchEvent(new MouseEvent("click"));
-
-      win.print();
-    }
+   
   };
 
   function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
@@ -122,27 +94,12 @@ function App() {
 
         <HStack mt={6} direction="row" spacing={3} as="footer">
           <Box>
-            <Pdf
-              targetRef={ref}
-              filename="document.pdf"
-              style={{ height: "200px" }}
-            >
-              {({ toPdf }: any) => (
-                <Button
-                  colorScheme="blue"
-                  variant="solid"
-                  onClick={toPdf}
-                  isDisabled={!file}
-                >
-                  Gerar react-pdf
-                </Button>
-              )}
-            </Pdf>
-
             <Button
               colorScheme="blue"
               variant="solid"
+              type="submit"
               onClick={handleGeneratePdf}
+              isDisabled={!file}
             >
               Gerar PDF
             </Button>
