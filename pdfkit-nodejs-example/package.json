@@ -10,11 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "child_process": "^1.0.2",
-    "muhammara": "^3.8.0",
-    "pdf-lib": "^1.17.1",
     "pdfkit": "^0.13.0",
-    "press-ready": "^4.0.3",
     "svg-to-pdfkit": "^0.1.8"
   }
 }
