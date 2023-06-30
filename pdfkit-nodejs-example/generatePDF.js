@@ -9,12 +9,15 @@ const inputPath = "output.pdf";
 function generatePDF() {
   const doc = new PDFDocument({ size: [100, 160] }); // Especifica o tamanho em pontos (1 ponto = 1/72 polegadas)
 
-  const svgContent = fs.readFileSync("./assets/puzzle.svg", "utf-8");
+  // Register font on PDF
+  doc.registerFont("RobotoMed", "./assets/fonts/Roboto-Medium.ttf");
 
-  SVGtoPDF(doc, svgContent, 10, 50, { width: 80, height: 80 });
+  // Add Svg fonts
+  // const svgContent = fs.readFileSync("./assets/puzzle.svg", "utf-8");
+  // SVGtoPDF(doc, svgContent, 10, 50, { width: 80, height: 80 });
 
   doc
-    .font("Times-Roman")
+    .font("RobotoReg")
     .fontSize(12)
     .text("Etiqueta test", 10, 20, { width: 80 });
 
@@ -30,6 +33,8 @@ function convertToX1a() {
   exec(command);
 
   console.log("PDF convertido para X-1a com sucesso!");
+
+  lintPdf("converted.pdf");
 }
 
 function lintPdf(path) {
@@ -53,7 +58,7 @@ convertToX1a();
 //     "-sColorConversionStrategy=UseDeviceIndependentColor",
 //     "-sDEVICE=pdfwrite",
 //     "-sOutputFile=output_x1a.pdf",
-//     "output.pdf",
+//     "converted.pdf",
 //   ];
 
 //   const gsProcess = spawn("gswin64c", gsArgs);
@@ -70,3 +75,5 @@ convertToX1a();
 //     console.log(`Ghostscript process exited with code ${code}`);
 //   });
 // }
+
+// convertWithGs()
