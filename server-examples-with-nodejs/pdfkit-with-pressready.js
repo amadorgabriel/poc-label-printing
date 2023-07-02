@@ -1,7 +1,7 @@
 const fs = require("fs");
 const PDFDocument = require("pdfkit");
 const SVGtoPDF = require("svg-to-pdfkit");
-const { spawn, exec } = require("child_process");
+const { exec } = require("child_process");
 
 const inputPath = "output.pdf";
 
@@ -12,12 +12,13 @@ function generatePDF() {
   // Register font on PDF
   doc.registerFont("RobotoMed", "./assets/fonts/Roboto-Medium.ttf");
 
-  // Add Svg fonts
-  // const svgContent = fs.readFileSync("./assets/puzzle.svg", "utf-8");
-  // SVGtoPDF(doc, svgContent, 10, 50, { width: 80, height: 80 });
+  // Add Svg
+  const svgContent = fs.readFileSync("./assets/puzzle.svg", "utf-8");
+  SVGtoPDF(doc, svgContent, 10, 40, { width: 80, height: 80 });
+  // doc.image('./assets/puzzle.svg', { width: 400, height: 300 });
 
   doc
-    .font("RobotoReg")
+    .font("RobotoMed")
     .fontSize(12)
     .text("Etiqueta test", 10, 20, { width: 80 });
 
@@ -33,8 +34,6 @@ function convertToX1a() {
   exec(command);
 
   console.log("PDF convertido para X-1a com sucesso!");
-
-  lintPdf("converted.pdf");
 }
 
 function lintPdf(path) {
