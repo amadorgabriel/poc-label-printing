@@ -3,33 +3,35 @@ const PDFDocument = require("pdfkit");
 const SVGtoPDF = require("svg-to-pdfkit");
 const { exec } = require("child_process");
 
-const inputPath = "output.pdf";
+const svgPath = "./assets/svg/puzzle.svg";
+const mountOutputPath = "./results/pdfkitMountedPDF.pdf";
+const convertedToX1aPath = "./results/convertedToX1aPDF.pdf";
 
 // Generate PDF
-function generatePDF() {
-  const doc = new PDFDocument({ size: [100, 160] }); // Especifica o tamanho em pontos (1 ponto = 1/72 polegadas)
+function mountPDF() {
+  const doc = new PDFDocument({ size: [100, 180] }); // Especifica o tamanho em pontos (1 ponto = 1/72 polegadas)
 
   // Register font on PDF
   doc.registerFont("RobotoMed", "./assets/fonts/Roboto-Medium.ttf");
 
   // Add Svg
-  const svgContent = fs.readFileSync("./assets/puzzle.svg", "utf-8");
-  SVGtoPDF(doc, svgContent, 10, 40, { width: 80, height: 80 });
+  // const svgContent = fs.readFileSync(svgPath, "utf-8");
+  // SVGtoPDF(doc, svgContent, 10, 80, { width: 80, height: 80 });
   // doc.image('./assets/puzzle.svg', { width: 400, height: 300 });
 
   doc
     .font("RobotoMed")
     .fontSize(12)
-    .text("Etiqueta test", 10, 20, { width: 80 });
+    .text("Exemplo PDF montada com pdfkit", 10, 20, { width: 80 });
 
-  doc.pipe(fs.createWriteStream(inputPath));
+  doc.pipe(fs.createWriteStream(mountOutputPath));
 
   doc.end();
 }
 
 // Convert format to x1a with press-ready
 function convertToX1a() {
-  const command = `press-ready build -i output.pdf -o converted.pdf`;
+  const command = `press-ready build -i ${mountOutputPath} -o ${convertedToX1aPath}`;
 
   exec(command);
 
@@ -42,7 +44,7 @@ function lintPdf(path) {
   exec(command);
 }
 
-generatePDF();
+mountPDF();
 convertToX1a();
 
 // Convert format to x1a with ghostscript
