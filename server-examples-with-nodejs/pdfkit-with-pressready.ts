@@ -1,18 +1,18 @@
-const fs = require("fs");
-const PDFDocument = require("pdfkit");
-const SVGtoPDF = require("svg-to-pdfkit");
-const { exec } = require("child_process");
-
-const svgPath = "./assets/svg/puzzle.svg";
-const mountOutputPath = "./results/pdfkitMountedPDF.pdf";
-const convertedToX1aPath = "./results/convertedToX1aPDF.pdf";
+import {
+  PDFKit,
+  convertedToX1aPath,
+  exec,
+  fontPath,
+  fs,
+  mountOutputPath,
+} from "./constants";
 
 // Generate PDF
 function mountPDF() {
-  const doc = new PDFDocument({ size: [100, 180] }); // Especifica o tamanho em pontos (1 ponto = 1/72 polegadas)
+  const doc = new PDFKit({ size: [100, 180] }); // Especifica o tamanho em pontos (1 ponto = 1/72 polegadas)
 
   // Register font on PDF
-  doc.registerFont("RobotoMed", "./assets/fonts/Roboto-Medium.ttf");
+  doc.registerFont("RobotoMed", fontPath);
 
   // Add Svg
   // const svgContent = fs.readFileSync(svgPath, "utf-8");
