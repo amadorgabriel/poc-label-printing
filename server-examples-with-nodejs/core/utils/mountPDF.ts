@@ -1,24 +1,29 @@
-const { fs, PDFKit, SVGtoPDF } = require("../constants/index");
+export {};
+
+const { fs, PDFKit, SVGtoPDF } = require("../constants/index.ts");
 
 const svgPath = "../../assets/svg/puzzle.svg";
-const mountedPath = "../results/mounted.pdf";
+const mountedPath = "./core/results/mounted.pdf";
 const fontMRobotoPath = "../../assets/fonts/Roboto-Medium.ttf";
 
-function mountPDF() {
-  const doc = new PDFKit({ size: [100, 180] });
+module.exports = {
+  mountPDF: () => {
+    const doc = new PDFKit({ size: [100, 180] });
 
-  doc.registerFont("Roboto", fontMRobotoPath);
+    doc.registerFont("Roboto", require.resolve(fontMRobotoPath));
 
-  const svgContent = fs.readFileSync(svgPath, "utf-8");
-  SVGtoPDF(doc, svgContent, 10, 80, { width: 80, height: 80 });
-  doc
-    .font("Roboto")
-    .fontSize(12)
-    .text("Exemplo PDF montada com pdfkit", 10, 20, { width: 80 });
+    const svgContent = fs.readFileSync(require.resolve(svgPath), {
+      encoding: "utf8",
+    });
 
-  doc.pipe(fs.createWriteStream(mountedPath));
+    SVGtoPDF(doc, svgContent, 10, 80, { width: 80, height: 80 });
+    doc
+      .font("Roboto")
+      .fontSize(12)
+      .text("PDF montado com pdfkit", 10, 20, { width: 80 });
 
-  doc.end();
-}
+    doc.pipe(fs.createWriteStream(mountedPath));
 
-export { mountPDF };
+    doc.end();
+  },
+};

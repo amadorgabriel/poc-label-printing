@@ -1,7 +1,11 @@
-import { convertToX1a } from "./utils/convertToX1a";
-import { mountPDF } from "./utils/mountPDF";
+export {};
 
-export function mountX1a() {
-  mountPDF();
-  convertToX1a();
-}
+const convertToX1a = require("./utils/convertToX1a.ts");
+const mountPDF = require("./utils/mountPDF.ts");
+
+module.exports = {
+  mountX1a: () => {
+    mountPDF.mountPDF();
+    convertToX1a.convertToX1a();
+  },
+};

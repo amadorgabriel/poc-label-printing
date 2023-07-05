@@ -1,10 +1,6 @@
-const {
-  fs,
-  PDFKit,
-  SVGtoPDF,
-  fontMRobotoPath,
-  onlyFontsX1aPath,
-} = require("./constants/index");
+export {};
+
+const { fs, PDFKit, SVGtoPDF } = require("./constants/index.ts");
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 540 320">
  <defs>
@@ -70,20 +66,20 @@ const svg1 = `<?xml version="1.0" encoding="iso-8859-1"?>
 </g>
 </svg>`;
 
-function mountOnlySVG() {
-  var doc = new PDFKit();
-  var stream = fs.createWriteStream(onlyFontsX1aPath);
+const onlySVGX1aPath = "./core/results/onlySVGX1a.pdf";
 
-  SVGtoPDF(doc, svg1, 10, 0);
+module.exports = {
+  mountOnlySVG: () => {
+    const doc = new PDFKit();
 
-  doc.registerFont("RobotoMed", fontMRobotoPath);
+    // const svgContent = fs.readFileSync(require.resolve(svg1), {
+    //   encoding: "utf8",
+    // });
 
-  stream.on("finish", function () {
-    console.log(fs.readFileSync("file.pdf"));
-  });
+    SVGtoPDF(doc, svg, 10, 0);
 
-  doc.pipe(stream);
-  doc.end();
-}
+    doc.pipe(fs.createWriteStream(onlySVGX1aPath));
 
-export { mountOnlySVG };
+    doc.end();
+  },
+};
