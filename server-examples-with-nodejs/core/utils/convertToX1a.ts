@@ -2,8 +2,8 @@ export {};
 
 const { childProcess } = require("../constants/index.ts");
 
-const mountedPath = "../results/mounted.pdf";
-const mountedX1aPath = "../results/mountedX1a.pdf";
+const mountedPath = "./core/results/mounted.pdf";
+const mountedX1aPath = "./core/results/mountedX1a.pdf";
 
 module.exports = {
   convertToX1a: () => {

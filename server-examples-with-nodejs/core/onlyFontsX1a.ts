@@ -3,7 +3,7 @@ export {};
 const { fs, PDFKit } = require("./constants/index.ts");
 
 const onlyFontsX1aPath = "./core/results/onlyFontsX1a.pdf";
-const fontMRobotoPath = "../assets/fonts/Roboto-Medium.ttf";
+const fontMRobotoPath = "../assets/fonts/neofolia.ttf";
 
 module.exports = {
   mountOnlyFontsX1a: () => {
