@@ -38,7 +38,7 @@ Porém os arquivos gerados tem perdido qualidade, formatação no momento da con
     - [x]  PDFKit + press-ready
         - [ ]  ~~Preservar fontes e preservar vetores~~
 
-<img src="./server-examples-with-nodejs/assets/img/x1_Diagram.png" alt="Diagrama montagem PDF" width="600px"/>
+<img src="./server-examples-with-nodejs/assets/img/x1_Diagram.png" alt="Diagrama montagem PDF"/>
 
 **Client-side com ReactJs**
 
@@ -77,7 +77,19 @@ Porém os arquivos gerados tem perdido qualidade, formatação no momento da con
 
 # Resultados Obtidos
 
-As libs de renderização de pdf com javascript pelo lado do client ainda são bastante limitadas, não existem muitas alternativas, possibilidades aprofundadas para lidar com esse cenário e as documentações também não são ricas.
+As libs de renderização de pdf com javascript pelo lado do client ainda são bastante limitadas, não existem muitas alternativas, possibilidades aprofundadas para lidar com esse cenário e as documentações também não são tão ricas.
+
+Quanto a lib de renderização pelo lado do server, usando a pdfkit foi possível gerar um pdf preservando a qualidade da fonte e imagem(svg) também. Foi possível imprimi-la atingindo a qualidade e métricas esperadas.
+
+Não foi possível converter o pdf para formato ``X/1a`` com a devida preservação de imagem. Para essa funcionalidade de conversão foi utilizada a lib [press-ready](https://github.com/vibranthq/press-ready). Como resultado obtivemos a métrica esperada mas os vetores não foram preservados.
+
+Quanto a tipografia, foi possível embutir a fonte através da lib [pdfkit](https://pdfkit.org/). A fonte foi mantida em diferentes máquinas para **vizualização** e **impressão**, entretanto, a **edição** ou **instalação** são limitadas de acordo com a licença da fonte ou se a mesma está instalada no computdor do usuário
+
+Foi possível assegurar o formato do documento PDF, fontes incorporadas e metadados através do software Adobe Acrobat Reader. 
+
+Não foi possível converter a tipografia da fonte para outlines(contornos) ou travar o PDF para impedir edição.
+
+<img src="./server-examples-with-nodejs/assets/img/prints.jpeg" alt="Fotografia de etiquetas impressas" width="600px"/>
 
 
 # Referências
